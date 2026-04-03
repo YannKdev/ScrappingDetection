@@ -1,0 +1,22 @@
+# Temp / Personal files
+temp/
+
+# Secrets
+.env
+
+# Node / Next.js
+node_modules/
+.next/
+.env*.local
+npm-debug.log*
+
+# Large data files
+ja4_database.json
+
+# Go binaries
+*.exe
+*.exe~
+
+# OS
+.DS_Store
+Thumbs.db

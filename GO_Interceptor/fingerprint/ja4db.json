@@ -1,0 +1,490 @@
+[
+  {
+    "ja4": "t13i181000_85036bcba153_d41ae481755e",
+    "application": null,
+    "library": "Python",
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d1516h2_8daaf6152771_02713d6af862",
+    "application": "Chromium Browser",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "q13d0312h3_55b375c5d22e_06cda9e17597",
+    "application": "Chromium Browser",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d1517h2_8daaf6152771_b0da82dd1658",
+    "application": "Chromium Browser",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d1517h2_8daaf6152771_b1ff8ab2d16f",
+    "application": "Chromium Browser",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d190900_9dc949149365_97f8aa674fd9",
+    "application": null,
+    "library": "GoLang",
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d201100_2b729b4bf6f3_9e7b989ebec8",
+    "application": "IcedID ",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d880900_fcb5b95cb75a_b0d3b4ac2a14",
+    "application": "SoftEther VPN",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t12i190700_d83cc789557e_16bbda4055b2",
+    "application": "Cobalt Strike v4.9.1 beacon",
+    "library": null,
+    "os": "Windows 10",
+    "user_agent_string": null,
+    "notes": "Cobalt Strike v4.9.1 over wininet"
+  },
+  {
+    "ja4": "t12i210700_76e208dd3e22_16bbda4055b2",
+    "application": "Cobalt Strike v4.9.1 beacon",
+    "library": null,
+    "os": "Windows 10",
+    "user_agent_string": null,
+    "notes": "Cobalt Strike v4.9.1 over winhttp"
+  },
+  {
+    "ja4": "t13d191000_9dc949149365_e7c285222651",
+    "application": "ngrok 3.8.0",
+    "library": null,
+    "os": "Windows",
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13i190900_9dc949149365_e7c285222651",
+    "application": "ngrok 3.8.0",
+    "library": null,
+    "os": "Windows",
+    "user_agent_string": null,
+    "notes": ""
+  },
+  {
+    "ja4": "t13d1714h2_95e1cefdbe28_d267a5f792d4",
+    "application": "Firefox 68.0 ",
+    "library": null,
+    "os": "OS X El Capitan ",
+    "user_agent_string": null,
+    "notes": "OS X El Capitan on firefox 68.0"
+  },
+  {
+    "ja4": "t12d1310sp_a571d07754c8_736b2a1ed4d3",
+    "application": "Chrome 31.0 ",
+    "library": null,
+    "os": "Windows 8 .1",
+    "user_agent_string": null,
+    "notes": "Windows 8.1 on chrome 31.0"
+  },
+  {
+    "ja4": "t13d1516h2_8daaf6152771_e5627efa2ab1",
+    "application": "Chrome 94.0 ",
+    "library": null,
+    "os": "Windows 7 ",
+    "user_agent_string": null,
+    "notes": "Windows 7 on chrome 94.0"
+  },
+  {
+    "ja4": "t12d1810h2_4b22cbed5bed_27793441e138",
+    "application": "Edge 17.0 ",
+    "library": null,
+    "os": "Windows 10 ",
+    "user_agent_string": null,
+    "notes": "Windows 10 on edge 17.0"
+  },
+  {
+    "ja4": "t12d1211h2_d34a8e72043a_eb7c9aabf852",
+    "application": "Chrome 62.0 ",
+    "library": null,
+    "os": "Windows 7 ",
+    "user_agent_string": null,
+    "notes": "Windows 7 on chrome 62.0"
+  },
+  {
+    "ja4": "t13d1616h2_e72c3b3287f1_e5627efa2ab1",
+    "application": "Edge 111.0 ",
+    "library": null,
+    "os": "OS X Ventura ",
+    "user_agent_string": null,
+    "notes": "OS X Ventura on edge 111.0"
+  },
+  {
+    "ja4": "t12d1212ht_39b11509324c_c9eaec7dbab4",
+    "application": "Chrome 46.0 ",
+    "library": null,
+    "os": "Windows 10 ",
+    "user_agent_string": null,
+    "notes": "Windows 10 on chrome 46.0"
+  },
+  {
+    "ja4": "t13d1714h2_5b57614c22b0_d267a5f792d4",
+    "application": "Firefox 84.0 ",
+    "library": null,
+    "os": "Windows 10 ",
+    "user_agent_string": null,
+    "notes": "Windows 10 on firefox 84.0"
+  },
+  {
+    "ja4": "t12d1211ht_39b11509324c_c905abbc9856",
+    "application": "Chrome 43.0 ",
+    "library": null,
+    "os": "OS X Mojave ",
+    "user_agent_string": null,
+    "notes": "OS X Mojave on chrome 43.0"
+  },
+  {
+    "ja4": "t12d1313h2_07be0c029dc8_ad97e2351c08",
+    "application": "Firefox 61.0 ",
+    "library": null,
+    "os": "OS X El Capitan ",
+    "user_agent_string": null,
+    "notes": "OS X El Capitan on firefox 61.0"
+  },
+  {
+    "ja4": "t13d1715h2_5b57614c22b0_3d5424432f57",
+    "application": "Firefox 101.0 ",
+    "library": null,
+    "os": "OS X Ventura ",
+    "user_agent_string": null,
+    "notes": "OS X Ventura on firefox 101.0"
+  },
+  {
+    "ja4": "t12d1409h2_c877c20a043a_e70312a1ce2c",
+    "application": "Firefox 55.0 ",
+    "library": null,
+    "os": "Windows 11 ",
+    "user_agent_string": null,
+    "notes": "Windows 11 on firefox 55.0"
+  },
+  {
+    "ja4": "t13d1515h2_8daaf6152771_de4a06bb82e3",
+    "application": "Edge 84.0 ",
+    "library": null,
+    "os": "OS X Monterey ",
+    "user_agent_string": null,
+    "notes": "OS X Monterey on edge 84.0"
+  },
+  {
+    "ja4": "t12d1314h2_07be0c029dc8_d267a5f792d4",
+    "application": "Firefox 62.0 ",
+    "library": null,
+    "os": "Windows 8 .1",
+    "user_agent_string": null,
+    "notes": "Windows 8.1 on firefox 62.0"
+  },
+  {
+    "ja4": "t12d1211h2_d34a8e72043a_77989cba1f4a",
+    "application": "Chrome 71.0 ",
+    "library": null,
+    "os": "OS X Mojave ",
+    "user_agent_string": null,
+    "notes": "OS X Mojave on chrome 71.0"
+  },
+  {
+    "ja4": "t12d1311sp_a571d07754c8_06a4338d0495",
+    "application": "Chrome 34.0 ",
+    "library": null,
+    "os": "OS X Snow Leopard ",
+    "user_agent_string": null,
+    "notes": "OS X Snow Leopard on chrome 34.0"
+  },
+  {
+    "ja4": "t13d1515h2_8daaf6152771_45f260be83e2",
+    "application": "Chrome 72.0 ",
+    "library": null,
+    "os": "OS X High Sierra ",
+    "user_agent_string": null,
+    "notes": "OS X High Sierra on chrome 72.0"
+  },
+  {
+    "ja4": "t13d2313h2_24fc43eb1c96_845d286b0d67",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 14 .3",
+    "user_agent_string": null,
+    "notes": "ios 14.3 on iphone from iPhone 12 Pro Max"
+  },
+  {
+    "ja4": "t12d1411h2_c866b44c5a26_de5ccbe16bdd",
+    "application": "Chrome 53.0 ",
+    "library": null,
+    "os": "OS X Mavericks ",
+    "user_agent_string": null,
+    "notes": "OS X Mavericks on chrome 53.0"
+  },
+  {
+    "ja4": "t13d1515h2_8daaf6152771_6a09c78d0dc2",
+    "application": "Firefox 127.0 Beta ",
+    "library": null,
+    "os": "OS X Ventura ",
+    "user_agent_string": null,
+    "notes": "OS X Ventura on firefox 127.0 beta"
+  },
+  {
+    "ja4": "t13d1715h2_5b57614c22b0_5c2c66f702b0",
+    "application": "Firefox 120.0 ",
+    "library": null,
+    "os": "OS X Sonoma ",
+    "user_agent_string": null,
+    "notes": "OS X Sonoma on firefox 120.0"
+  },
+  {
+    "ja4": "t13d1714h2_5b57614c22b0_14788d8d241b",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 16 .4",
+    "user_agent_string": null,
+    "notes": "ios 16.4 on iphone from iPhone SE 2020"
+  },
+  {
+    "ja4": "t12d1011sp_41f4ea5be9c2_06a4338d0495",
+    "application": "Chrome 36.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 36.0"
+  },
+  {
+    "ja4": "t12d1212h2_d34a8e72043a_b00751acaffa",
+    "application": "Chrome 69.0 ",
+    "library": null,
+    "os": "Windows 7 ",
+    "user_agent_string": null,
+    "notes": "Windows 7 on chrome 69.0"
+  },
+  {
+    "ja4": "t12d1212h2_39b11509324c_c9eaec7dbab4",
+    "application": "Chrome 48.0 ",
+    "library": null,
+    "os": "OS X Mavericks ",
+    "user_agent_string": null,
+    "notes": "OS X Mavericks on chrome 48.0"
+  },
+  {
+    "ja4": "t12d1309sp_a571d07754c8_6bdcaa414218",
+    "application": "Chrome 32.0 ",
+    "library": null,
+    "os": "OS X Yosemite ",
+    "user_agent_string": null,
+    "notes": "OS X Yosemite on chrome 32.0"
+  },
+  {
+    "ja4": "t12d1210ht_39b11509324c_ab57fa081356",
+    "application": "Chrome 39.0 ",
+    "library": null,
+    "os": "OS X Mavericks ",
+    "user_agent_string": null,
+    "notes": "OS X Mavericks on chrome 39.0"
+  },
+  {
+    "ja4": "t12d0911ht_0a330963ad8f_c905abbc9856",
+    "application": "Chrome 44.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 44.0"
+  },
+  {
+    "ja4": "t12d1510sp_49e15d6cf97a_736b2a1ed4d3",
+    "application": "Chrome 30.0 ",
+    "library": null,
+    "os": "Windows 8 ",
+    "user_agent_string": null,
+    "notes": "Windows 8 on chrome 30.0"
+  },
+  {
+    "ja4": "t13d2314h2_24fc43eb1c96_c5b8c5b1cdcb",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 12 .2",
+    "user_agent_string": null,
+    "notes": "ios 12.2 on ipad from iPad Mini 2019"
+  },
+  {
+    "ja4": "t12d1112h2_c45550529adf_c9eaec7dbab4",
+    "application": "Chrome 49.0 ",
+    "library": null,
+    "os": "OS X Lion ",
+    "user_agent_string": null,
+    "notes": "OS X Lion on chrome 49.0"
+  },
+  {
+    "ja4": "t12d1312sp_a571d07754c8_ed5eb0a3fdc3",
+    "application": "Chrome 33.0 ",
+    "library": null,
+    "os": "OS X Snow Leopard ",
+    "user_agent_string": null,
+    "notes": "OS X Snow Leopard on chrome 33.0"
+  },
+  {
+    "ja4": "t12d1509sp_49e15d6cf97a_6bdcaa414218",
+    "application": "Chrome 30.0 ",
+    "library": null,
+    "os": "OS X El Capitan ",
+    "user_agent_string": null,
+    "notes": "OS X El Capitan on chrome 30.0"
+  },
+  {
+    "ja4": "t12d150900_49e15d6cf97a_736b2a1ed4d3",
+    "application": "Chrome 29.0 ",
+    "library": null,
+    "os": "Windows 7 ",
+    "user_agent_string": null,
+    "notes": "Windows 7 on chrome 29.0"
+  },
+  {
+    "ja4": "t12d1112h2_c45550529adf_ce3753e6c77f",
+    "application": "Chrome 50.0 ",
+    "library": null,
+    "os": "Windows 11 ",
+    "user_agent_string": null,
+    "notes": "Windows 11 on chrome 50.0"
+  },
+  {
+    "ja4": "t12d2010h2_2a284e3b0c56_f05fdf8c38a9",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 11 .0",
+    "user_agent_string": null,
+    "notes": "ios 11.0 on iphone from iPhone X"
+  },
+  {
+    "ja4": "t12d1210sp_02e81d9f7c9f_736b2a1ed4d3",
+    "application": "Chrome 30.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 30.0"
+  },
+  {
+    "ja4": "t12d0912h2_0a330963ad8f_c9eaec7dbab4",
+    "application": "Chrome 48.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 48.0"
+  },
+  {
+    "ja4": "t12d150800_49e15d6cf97a_6bdcaa414218",
+    "application": "Chrome 29.0 ",
+    "library": null,
+    "os": "OS X Mavericks ",
+    "user_agent_string": null,
+    "notes": "OS X Mavericks on chrome 29.0"
+  },
+  {
+    "ja4": "t12d1010sp_41f4ea5be9c2_736b2a1ed4d3",
+    "application": "Chrome 32.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 32.0"
+  },
+  {
+    "ja4": "t12d2010h2_2a284e3b0c56_12b7a1cb7c36",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 12 .1",
+    "user_agent_string": null,
+    "notes": "ios 12.1 on iphone from iPhone XS"
+  },
+  {
+    "ja4": "t12d1809ht_4b22cbed5bed_2cdefc264be7",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 10 .3",
+    "user_agent_string": null,
+    "notes": "ios 10.3 on iphone from iPhone 7"
+  },
+  {
+    "ja4": "t12d1012sp_41f4ea5be9c2_ed5eb0a3fdc3",
+    "application": "Chrome 33.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 33.0"
+  },
+  {
+    "ja4": "t12d1809h2_4b22cbed5bed_2cdefc264be7",
+    "application": "Safari 10.1 ",
+    "library": null,
+    "os": "OS X Sierra ",
+    "user_agent_string": null,
+    "notes": "OS X Sierra on safari 10.1"
+  },
+  {
+    "ja4": "t13d2314h2_24fc43eb1c96_14788d8d241b",
+    "application": "Safari ",
+    "library": null,
+    "os": "ios 15 .3",
+    "user_agent_string": null,
+    "notes": "ios 15.3 on iphone from iPhone XS"
+  },
+  {
+    "ja4": "t12d0712h2_ccb88ad3c00d_c9eaec7dbab4",
+    "application": "Chrome 49.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 49.0"
+  },
+  {
+    "ja4": "t12d120900_02e81d9f7c9f_736b2a1ed4d3",
+    "application": "Chrome 29.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 29.0"
+  },
+  {
+    "ja4": "t12d0912ht_0a330963ad8f_c9eaec7dbab4",
+    "application": "Chrome 47.0 ",
+    "library": null,
+    "os": "Windows XP ",
+    "user_agent_string": null,
+    "notes": "Windows XP on chrome 47.0"
+  },
+  {
+    "ja4": "t12i550500_168bb377f8c8_a1e935682795",
+    "application": "Anydesk",
+    "library": null,
+    "os": null,
+    "user_agent_string": null,
+    "notes": ""
+  }
+]

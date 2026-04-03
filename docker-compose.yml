@@ -1,0 +1,39 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+
+  nextjs:
+    build:
+      context: ./Next_JS
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - SESSION_SECRET=${SESSION_SECRET}
+      - ALLOWED_ORIGIN=bot-detection.demo-yann.ovh
+    depends_on:
+      - redis
+
+  go-interceptor:
+    build:
+      context: ./GO_Interceptor
+    restart: unless-stopped
+    ports:
+      - "4443:4443"
+    environment:
+      - LISTEN_ADDR=:4443
+      - UPSTREAM_URL=http://nextjs:3000
+      - REDIS_URL=redis://redis:6379
+      - TLS_CERT=/etc/letsencrypt/live/bot-detection.demo-yann.ovh/fullchain.pem
+      - TLS_KEY=/etc/letsencrypt/live/bot-detection.demo-yann.ovh/privkey.pem
+      - SESSION_SECRET=${SESSION_SECRET}
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - nextjs
+      - redis
+
+volumes:
+  redis_data:
