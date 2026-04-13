@@ -83,7 +83,7 @@ export default function HomePage() {
   }, [router])
 
   return (
-    <main className="flex min-h-screen items-center justify-center">
+    <main className="chargement" style={{ minHeight: '100vh', alignItems: 'center' }}>
       {/* Honeypot — invisible to real users, automatically filled by bots */}
       <input
         ref={honeypotRef}
@@ -95,10 +95,11 @@ export default function HomePage() {
         style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0 }}
       />
 
-      {/* Challenge invisible — spinner minimal */}
-      <div className="flex flex-col items-center gap-4">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-indigo-400/40 border-t-indigo-400" />
-        <p className="text-xs text-slate-600 tracking-widest uppercase">Analyzing…</p>
+      <div className="text-center">
+        <div className="spinner-border text-primary mb-3" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="text-muted small text-uppercase letter-spacing-wide">Analyzing…</p>
       </div>
     </main>
   )

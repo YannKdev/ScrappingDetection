@@ -207,19 +207,13 @@ function parseJA4PartA(ja4: string): JA4PartA | null {
 // - ciphers ≤ 4                → suspicious universally (degenerate TLS stack)
 // - ciphers 5-9 + browser UA   → suspicious (browsers have 15-20, only fires when JA4 not in DB)
 // - exts   < 6  + browser UA   → suspicious (browsers have 8-16,  only fires when JA4 not in DB)
-function ja4Anomalies(ja4: string, ua: string): {
-  lowVersion: boolean; noAlpn: boolean; fewCiphers: boolean
-  suspiciousCiphers: boolean; fewExts: boolean
-} {
+function ja4Anomalies(ja4: string, ua: string): { lowVersion: boolean; fewCiphers: boolean } {
   const p = parseJA4PartA(ja4)
-  if (!p) return { lowVersion: false, noAlpn: false, fewCiphers: false, suspiciousCiphers: false, fewExts: false }
+  if (!p) return { lowVersion: false, fewCiphers: false }
   const uaIsBrowser = isLikelyBrowserUA(ua)
   return {
-    lowVersion:        p.version === '12' && uaIsBrowser,
-    noAlpn:            p.alpn    === '00',
-    fewCiphers:        p.ciphers <= 4,
-    suspiciousCiphers: p.ciphers >= 5 && p.ciphers < 10 && uaIsBrowser, // browsers have 15-20
-    fewExts:           p.exts    <  6  && uaIsBrowser,                   // browsers have 8-16
+    lowVersion: p.version === '12' && uaIsBrowser,
+    fewCiphers: p.ciphers <= 4,
   }
 }
 
@@ -276,15 +270,8 @@ function parseTLSFingerprint(raw: string): TLSRaw | null {
 }
 
 // GREASE values (RFC 8701): both bytes equal, low nibble = 0xA (0x0A0A, 0x1A1A, …)
-const isGREASE      = (n: number) => (n & 0xff) === (n >> 8) && (n & 0x0f) === 0x0a
-const hasGREASE     = (list: number[]) => list.some(isGREASE)
-// Post-quantum key exchange groups
-const hasPQGroup    = (groups: number[]) => groups.includes(0x6399) || groups.includes(0x11ec)
-
-function uaBrowserVersion(ua: string, browser: 'chrome' | 'firefox'): number {
-  const m = ua.match(browser === 'chrome' ? /chrome\/(\d+)/i : /firefox\/(\d+)/i)
-  return m ? parseInt(m[1], 10) : 0
-}
+const isGREASE  = (n: number) => (n & 0xff) === (n >> 8) && (n & 0x0f) === 0x0a
+const hasGREASE = (list: number[]) => list.some(isGREASE)
 
 function tlsCoherenceSignals(tlsRaw: TLSRaw | null, ua: string): Signal[] {
   const na = tlsRaw === null  // Go proxy absent — all N/A
@@ -296,8 +283,6 @@ function tlsCoherenceSignals(tlsRaw: TLSRaw | null, ua: string): Signal[] {
   const uaIsChromium = /chrome\/\d/i.test(ua)
   const uaIsFirefox  = /firefox\/\d/i.test(ua)
   const uaIsBrowser  = isLikelyBrowserUA(ua)
-  const chromeVer    = uaBrowserVersion(ua, 'chrome')
-  const ffVer        = uaBrowserVersion(ua, 'firefox')
 
   return [
     {
@@ -340,58 +325,6 @@ function tlsCoherenceSignals(tlsRaw: TLSRaw | null, ua: string): Signal[] {
       weight: 50,
       explanation: 'Chrome removed the P-521 curve (secp521r1, 0x0019) from its supported_groups many years ago.\n\nFirefox and Safari still include P-521. Its presence with a Chrome/Chromium UA reveals a non-Chromium TLS stack (Firefox or a third-party library mimicking Firefox).',
     },
-    {
-      id: 'tls_pq_absent_chrome130',
-      label: 'PQ absent — UA Chrome ≥ 130',
-      layer: 'tls_coherence',
-      value: na ? 'N/A' : hasPQGroup(grp) ? 'X25519MLKEM768 present' : 'No PQ group',
-      suspicious: !na && !hasPQGroup(grp) && uaIsChromium && chromeVer >= 130,
-      notApplicable: na || !uaIsChromium || chromeVer < 130,
-      weight: 45,
-      explanation: 'Chrome 124+ includes X25519MLKEM768 (0x11ec, NIST ML-KEM post-quantum) in its supported_groups. Chrome 116-123 used X25519Kyber768Draft00 (0x6399).\n\nA Chrome ≥ 130 UA without any post-quantum group does not match a real Chrome installation — spoofed TLS stack or falsified UA version.',
-    },
-    {
-      id: 'tls_pq_absent_ff132',
-      label: 'PQ absent — UA Firefox ≥ 132',
-      layer: 'tls_coherence',
-      value: na ? 'N/A' : hasPQGroup(grp) ? 'PQ group present' : 'No PQ group',
-      suspicious: !na && !hasPQGroup(grp) && uaIsFirefox && ffVer >= 132,
-      notApplicable: na || !uaIsFirefox || ffVer < 132,
-      weight: 40,
-      explanation: 'Firefox 132+ includes X25519MLKEM768 (0x11ec) in its supported_groups. Firefox 119-131 used X25519Kyber768Draft00 (0x6399).\n\nA Firefox ≥ 132 UA without a post-quantum group reveals a non-Firefox TLS stack or a falsified UA version.',
-    },
-    {
-      id: 'tls_3des_modern',
-      label: '3DES — modern browser',
-      layer: 'tls_coherence',
-      value: na ? 'N/A' : cs.includes(0x000a) ? '3DES present (0x000a)' : 'Absent (normal)',
-      suspicious: !na && cs.includes(0x000a) && uaIsBrowser,
-      notApplicable: na,
-      weight: 35,
-      explanation: 'TLS_RSA_WITH_3DES_EDE_CBC_SHA (0x000a) was removed by Chrome ≥ 67 (2018) and Firefox ≥ 44 (2016).\n\nIts presence in cipher suites with a modern browser UA reveals an old or non-standard TLS library, incompatible with any recent browser.',
-    },
-    {
-      id: 'tls_p521_sigalg_chrome',
-      label: 'secp521 sig_alg — UA Chrome',
-      layer: 'tls_coherence',
-      value: na ? 'N/A' : sa.includes(0x0603) ? 'ecdsa_secp521r1_sha512 present' : 'Absent (normal)',
-      suspicious: !na && sa.includes(0x0603) && uaIsChromium,
-      notApplicable: na || !uaIsChromium,
-      weight: 30,
-      explanation: 'Chrome does not list ecdsa_secp521r1_sha512 (0x0603) in its signature_algorithms.\n\nFirefox and Safari include this algorithm. Its presence with a Chrome/Chromium UA indicates a Firefox TLS stack or a third-party library that does not faithfully replicate the Chrome profile.',
-    },
-    {
-      id: 'tls_compress_absent_chrome85',
-      label: 'compress_certificate absent — Chrome ≥ 85',
-      layer: 'tls_coherence',
-      value: na ? 'N/A' : ext.includes(0x001b) ? 'Present' : 'Absent',
-      suspicious: !na && !ext.includes(0x001b) && uaIsChromium && chromeVer >= 85,
-      notApplicable: na || !uaIsChromium || chromeVer < 85,
-      weight: 20,
-      explanation: 'Chrome 85+ sends the compress_certificate extension (0x001b) to enable Brotli compression of TLS certificates, reducing their size by 30-40%.\n\nIts absence with a Chrome ≥ 85 UA is atypical — moderate signal as some network configurations may strip it.',
-    },
-    // tls_alps_absent_chrome91 removed: Chrome removed the ALPS extension (0x4469)
-    // in late 2024, causing false positives on all modern Chrome/Edge builds.
   ]
 }
 
@@ -755,15 +688,6 @@ export function evaluate(
       explanation: 'TLS 1.3 has been mandatory since Chrome 84 (2020) and Firefox 74 (2020).\n\nA client claiming to be a modern browser but only using TLS 1.2 is using a third-party TLS library: Python-requests, curl, pre-JDK11 Java, or an embedded library.',
     },
     {
-      id: 'ja4_no_alpn',
-      label: 'ALPN missing',
-      layer: 'tls',
-      value: tls.ja4 ? (parseJA4PartA(tls.ja4)?.alpn ?? 'N/A') : 'N/A',
-      suspicious: ja4Anom.noAlpn,
-      weight: 10,
-      explanation: 'ALPN (Application-Layer Protocol Negotiation) allows negotiating the application protocol (h2, http/1.1) in the TLS ClientHello.\n\nAll modern HTTP clients use it. Absence of ALPN (\'00\' in JA4) signals a minimalist TLS tool, a port scanner, or a misconfigured client.',
-    },
-    {
       id: 'ja4_few_ciphers',
       label: 'Cipher suite count',
       layer: 'tls',
@@ -771,26 +695,6 @@ export function evaluate(
       suspicious: ja4Anom.fewCiphers,
       weight: 15,
       explanation: 'Browsers offer 15–20 cipher suites in their ClientHello.\n\nFewer than 5 suites indicates a minimal TLS library (scanner, testing tool, custom client). This signal is nearly impossible to false-positive on a real browser.',
-    },
-    {
-      // Fires only when JA4 not in DB — avoids double-counting with ja4_db_ua_mismatch
-      id: 'ja4_suspicious_ciphers',
-      label: 'Insufficient cipher suites for a browser',
-      layer: 'tls',
-      value: tls.ja4 ? `${parseJA4PartA(tls.ja4)?.ciphers ?? 'N/A'} suites` : 'N/A',
-      suspicious: ja4Anom.suspiciousCiphers && !tls.ja4App,
-      weight: 20,
-      explanation: '5–9 cipher suites with a declared browser UA.\n\nReal browsers offer 15–20. This limited count is characteristic of libraries like Python-requests or curl that only implement the suites they natively support.',
-    },
-    {
-      // Fires only when JA4 not in DB — avoids double-counting with ja4_db_ua_mismatch
-      id: 'ja4_few_exts',
-      label: 'Insufficient TLS extensions for a browser',
-      layer: 'tls',
-      value: tls.ja4 ? `${parseJA4PartA(tls.ja4)?.exts ?? 'N/A'} extensions` : 'N/A',
-      suspicious: ja4Anom.fewExts && !tls.ja4App,
-      weight: 15,
-      explanation: 'Browsers include 8–16 TLS extensions in the ClientHello (SNI, ALPN, supported_groups, session_ticket, etc.).\n\nFewer than 6 extensions with a browser UA is inconsistent — simplistic HTTP libraries do not implement all these standard extensions.',
     },
     {
       id: 'h2_settings_vs_ua',
@@ -995,15 +899,6 @@ export function evaluateGet(
       explanation: 'TLS 1.3 has been mandatory since Chrome 84 (2020) and Firefox 74 (2020).\n\nA client claiming to be a modern browser but only using TLS 1.2 is using a third-party TLS library: Python-requests, curl, pre-JDK11 Java, or an embedded library.',
     },
     {
-      id: 'ja4_no_alpn',
-      label: 'ALPN missing',
-      layer: 'tls',
-      value: ctx.ja4 ? (parseJA4PartA(ctx.ja4)?.alpn ?? 'N/A') : 'N/A',
-      suspicious: ja4Anom.noAlpn,
-      weight: 10,
-      explanation: 'ALPN (Application-Layer Protocol Negotiation) allows negotiating the application protocol (h2, http/1.1) in the TLS ClientHello.\n\nAll modern HTTP clients use it. Absence of ALPN (\'00\' in JA4) signals a minimalist TLS tool, a port scanner, or a misconfigured client.',
-    },
-    {
       id: 'ja4_few_ciphers',
       label: 'Cipher suite count',
       layer: 'tls',
@@ -1011,26 +906,6 @@ export function evaluateGet(
       suspicious: ja4Anom.fewCiphers,
       weight: 15,
       explanation: 'Browsers offer 15–20 cipher suites in their ClientHello.\n\nFewer than 5 suites indicates a minimal TLS library (scanner, testing tool, custom client). This signal is nearly impossible to false-positive on a real browser.',
-    },
-    {
-      // Fires only when JA4 not in DB — avoids double-counting with ja4_db_ua_mismatch
-      id: 'ja4_suspicious_ciphers',
-      label: 'Insufficient cipher suites for a browser',
-      layer: 'tls',
-      value: ctx.ja4 ? `${parseJA4PartA(ctx.ja4)?.ciphers ?? 'N/A'} suites` : 'N/A',
-      suspicious: ja4Anom.suspiciousCiphers && !ctx.ja4App,
-      weight: 20,
-      explanation: '5–9 cipher suites with a declared browser UA.\n\nReal browsers offer 15–20. This limited count is characteristic of libraries like Python-requests or curl that only implement the suites they natively support.',
-    },
-    {
-      // Fires only when JA4 not in DB — avoids double-counting with ja4_db_ua_mismatch
-      id: 'ja4_few_exts',
-      label: 'Insufficient TLS extensions for a browser',
-      layer: 'tls',
-      value: ctx.ja4 ? `${parseJA4PartA(ctx.ja4)?.exts ?? 'N/A'} extensions` : 'N/A',
-      suspicious: ja4Anom.fewExts && !ctx.ja4App,
-      weight: 15,
-      explanation: 'Browsers include 8–16 TLS extensions in the ClientHello (SNI, ALPN, supported_groups, session_ticket, etc.).\n\nFewer than 6 extensions with a browser UA is inconsistent — simplistic HTTP libraries do not implement all these standard extensions.',
     },
     {
       id: 'h2_settings_vs_ua',

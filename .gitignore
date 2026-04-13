@@ -1,6 +1,9 @@
 # Temp / Personal files
 temp/
 
+# Design system (local reference only)
+Next_JS/design-system/
+
 # Secrets
 .env
 

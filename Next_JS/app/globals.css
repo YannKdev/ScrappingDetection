@@ -1,21 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  color-scheme: dark;
-}
+/* ============================================================
+   theme.css — Minimal overrides on top of Bootstrap 5.3
+   Bootstrap handles everything else — do not add decorative styles
+   ============================================================ */
 
 body {
-  background-color: #0f1117;
-  color: #e2e8f0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
 }
 
-/* Score ring via conic-gradient */
-.score-ring {
-  background: conic-gradient(
-    var(--ring-color) calc(var(--score-pct) * 1%),
-    #2a2d3a calc(var(--score-pct) * 1%)
-  );
+.table {
+  font-size: 0.83rem;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.chargement {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
 }
